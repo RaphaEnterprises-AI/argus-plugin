@@ -34,4 +34,4 @@ If no URL provided, will look for:
 /argus:test https://demo.vercel.store
 ```
 
-Use the `mcp__argus__argus_test` MCP tool to execute the tests. Display results in a formatted table with pass/fail status, screenshots, and any error messages.
+Use the `argus_test` MCP tool to execute the tests. Display results in a formatted table with pass/fail status, screenshots, and any error messages.

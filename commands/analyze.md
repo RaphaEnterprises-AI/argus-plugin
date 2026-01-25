@@ -45,4 +45,4 @@ Accepts: commit SHA, branch name, or nothing (for current changes)
 /argus:analyze feature/new-auth
 ```
 
-Use the `mcp__argus__argus_analyze` MCP tool to perform analysis.
+Use the `argus_what_to_test` and `argus_risk_scores` MCP tools to perform impact analysis.

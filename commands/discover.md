@@ -35,4 +35,4 @@ $ARGUMENTS
 /argus:discover https://demo.vercel.store
 ```
 
-Use the `mcp__argus__argus_discover` MCP tool to perform discovery.
+Use the `argus_discover` MCP tool to perform discovery.

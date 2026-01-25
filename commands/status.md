@@ -38,4 +38,4 @@ Tests: 42 total, 38 passing
 Last Run: 2 hours ago
 ```
 
-Use the `mcp__argus__argus_status` MCP tool to check status.
+Use the `argus_health` MCP tool to check system status and `argus_auth_status` for authentication status.

@@ -37,4 +37,4 @@ $ARGUMENTS
 /argus:heal
 ```
 
-Use the `mcp__argus__argus_heal` MCP tool to perform self-healing.
+Use the `argus_healing_review` and `argus_healing_patterns` MCP tools to perform self-healing.

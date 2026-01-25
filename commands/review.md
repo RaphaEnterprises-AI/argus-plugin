@@ -40,4 +40,4 @@ $ARGUMENTS
 /argus:review https://github.com/org/repo/pull/123
 ```
 
-Use the `mcp__argus__argus_analyze` tool for commit analysis and format the output as a PR review.
+Use the `argus_what_to_test` and `argus_risk_scores` MCP tools for commit impact analysis and format the output as a PR review.

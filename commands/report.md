@@ -37,4 +37,4 @@ $ARGUMENTS
 /argus:report --format html
 ```
 
-Use the `mcp__argus__argus_report` MCP tool to generate reports.
+Use the `argus_dashboard` and `argus_quality_stats` MCP tools to generate reports.

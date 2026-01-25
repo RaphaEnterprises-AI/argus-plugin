@@ -43,9 +43,12 @@ The Self-Healer Agent can autonomously:
 
 ## MCP Tools Used
 
-- `mcp__argus__argus_heal` - Perform self-healing
-- `mcp__argus__argus_test` - Verify fixes
-- `mcp__argus__argus_discover` - Find elements
+- `argus_healing_review` - Review healing suggestions and apply fixes
+- `argus_healing_patterns` - Find patterns from past successful healings
+- `argus_healing_stats` - Get healing statistics and success rates
+- `argus_healing_config` - Configure healing behavior
+- `argus_test` - Re-run tests to verify fixes work
+- `argus_discover` - Find alternative elements on the page
 
 ## When to Invoke
 

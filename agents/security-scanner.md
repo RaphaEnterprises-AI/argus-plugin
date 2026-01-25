@@ -43,8 +43,24 @@ The Security Scanner Agent can autonomously:
 
 ## MCP Tools Used
 
-- `mcp__argus__argus_security` - Run security scans
-- `mcp__argus__argus_dependency_check` - Check dependencies
+- `argus_risk_scores` - Get AI-powered security risk assessment
+- `argus_quality_stats` - Get quality metrics including security findings
+
+### Local Tools (Semgrep Integration)
+
+```bash
+# Run Semgrep with security rules
+semgrep --config=auto --config=p/security-audit <files>
+
+# Check for secrets
+semgrep --config=p/secrets <files>
+
+# Dependency check
+pip-audit  # Python
+npm audit  # Node.js
+```
+
+Custom Semgrep rules are available at: `skills/security-scan/rules/custom-semgrep.yaml`
 
 ## When to Invoke
 

@@ -43,8 +43,13 @@ The API Tester Agent can autonomously:
 
 ## MCP Tools Used
 
-- `mcp__argus__argus_api_test` - Execute API tests
-- `mcp__argus__argus_api_discover` - Discover endpoints
+- `argus_test` - Execute API test scenarios (supports both E2E and API modes)
+- `argus_extract` - Extract and validate API response data
+- `argus_agent` - Run autonomous API testing agent
+
+Note: For API spec parsing and endpoint discovery, use local tools like:
+- `curl` or `httpx` for making requests
+- OpenAPI/Swagger parsers for spec analysis
 
 ## When to Invoke
 

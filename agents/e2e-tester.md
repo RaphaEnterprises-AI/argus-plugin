@@ -55,10 +55,12 @@ When tests fail due to UI changes:
 
 ## MCP Tools Used
 
-- `mcp__argus__argus_discover` - Find elements on page
-- `mcp__argus__argus_test` - Execute test suite
-- `mcp__argus__argus_act` - Perform individual actions
-- `mcp__argus__argus_heal` - Self-heal broken tests
+- `argus_discover` - Find interactive elements on the page
+- `argus_test` - Execute the test suite with browser automation
+- `argus_act` - Perform individual browser actions (click, type, navigate)
+- `argus_extract` - Extract data from the page for assertions
+- `argus_healing_review` - Review and apply self-healing fixes
+- `argus_healing_patterns` - Learn from past healing patterns
 
 ## When to Invoke
 

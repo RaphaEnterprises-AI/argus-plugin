@@ -49,18 +49,20 @@ export ARGUS_API_KEY="your-api-key"
 
 These skills are automatically invoked by Claude when relevant:
 
-- **commit-impact-analysis** - Triggered on git push/commit
-- **security-scan** - Triggered when editing sensitive code
-- **test-suggestions** - Suggests tests for changed files
+- **commit-impact-analysis** - Triggered on git push/commit, predicts test failures
+- **security-scan** - Triggered when editing sensitive code, finds vulnerabilities
+- **test-suggestions** - Suggests minimal test set for changed files
+- **flaky-detection** - Identifies and analyzes intermittent test failures
 
 ## Agents
 
 Specialized agents for complex tasks:
 
-- **e2e-tester** - Browser-based E2E testing
-- **api-tester** - API endpoint testing
-- **security-scanner** - Security vulnerability scanning
-- **self-healer** - Auto-fix broken tests
+- **e2e-tester** - Browser-based E2E testing with screenshots and video
+- **api-tester** - API endpoint testing with schema validation
+- **security-scanner** - Security vulnerability scanning (SAST, secrets, CVEs)
+- **performance-analyzer** - Core Web Vitals and performance regression detection
+- **self-healer** - Auto-fix broken selectors and assertions
 
 ## Example Usage
 

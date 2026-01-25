@@ -1,0 +1,51 @@
+{
+  "description": "Argus quality intelligence hooks - event-driven automation",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/notify-dashboard.sh session_start",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if this bash command involves git (push, commit, merge). If it's a git push or commit, briefly mention that Argus can analyze commit impact. Do not block the command.",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/notify-dashboard.sh file_changed",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/notify-dashboard.sh session_end",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "argus": {
+      "command": "npx",
+      "args": ["@heyargus/mcp-server"],
+      "env": {
+        "ARGUS_API_URL": "${ARGUS_API_URL:-https://api.heyargus.ai}",
+        "ARGUS_API_KEY": "${ARGUS_API_KEY}"
+      }
+    }
+  }
+}

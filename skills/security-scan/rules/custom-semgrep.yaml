@@ -1,0 +1,92 @@
+rules:
+  # Hardcoded Secrets
+  - id: hardcoded-api-key
+    patterns:
+      - pattern-either:
+          - pattern: $VAR = "...$KEY..."
+          - pattern: $VAR = '...$KEY...'
+    pattern-regex: '(api[_-]?key|apikey|secret|password|token|auth)["\']?\s*[:=]\s*["\'][a-zA-Z0-9+/=]{16,}'
+    message: "Potential hardcoded API key or secret detected"
+    languages: [python, javascript, typescript, go, java]
+    severity: ERROR
+    metadata:
+      owasp: "A3:2017 - Sensitive Data Exposure"
+      cwe: "CWE-798: Use of Hard-coded Credentials"
+
+  # SQL Injection
+  - id: sql-injection-python
+    patterns:
+      - pattern-either:
+          - pattern: |
+              $CURSOR.execute($QUERY % ...)
+          - pattern: |
+              $CURSOR.execute($QUERY.format(...))
+          - pattern: |
+              $CURSOR.execute(f"...")
+    message: "Potential SQL injection - use parameterized queries"
+    languages: [python]
+    severity: ERROR
+    metadata:
+      owasp: "A1:2017 - Injection"
+      cwe: "CWE-89: SQL Injection"
+
+  # Command Injection
+  - id: command-injection
+    patterns:
+      - pattern-either:
+          - pattern: os.system($CMD)
+          - pattern: subprocess.call($CMD, shell=True, ...)
+          - pattern: subprocess.run($CMD, shell=True, ...)
+          - pattern: subprocess.Popen($CMD, shell=True, ...)
+    message: "Potential command injection - avoid shell=True with user input"
+    languages: [python]
+    severity: ERROR
+    metadata:
+      owasp: "A1:2017 - Injection"
+      cwe: "CWE-78: OS Command Injection"
+
+  # Insecure Deserialization
+  - id: insecure-pickle
+    patterns:
+      - pattern-either:
+          - pattern: pickle.loads(...)
+          - pattern: pickle.load(...)
+    message: "Insecure deserialization with pickle - only use with trusted data"
+    languages: [python]
+    severity: WARNING
+    metadata:
+      owasp: "A8:2017 - Insecure Deserialization"
+      cwe: "CWE-502: Deserialization of Untrusted Data"
+
+  # Missing HTTPS
+  - id: insecure-http
+    pattern-regex: 'http://(?!localhost|127\.0\.0\.1|0\.0\.0\.0)'
+    message: "Insecure HTTP URL detected - use HTTPS for external resources"
+    languages: [python, javascript, typescript]
+    severity: WARNING
+    metadata:
+      owasp: "A3:2017 - Sensitive Data Exposure"
+      cwe: "CWE-319: Cleartext Transmission"
+
+  # Weak Cryptography
+  - id: weak-hash-md5
+    patterns:
+      - pattern-either:
+          - pattern: hashlib.md5(...)
+          - pattern: crypto.createHash("md5")
+    message: "MD5 is cryptographically weak - use SHA-256 or better"
+    languages: [python, javascript, typescript]
+    severity: WARNING
+    metadata:
+      owasp: "A3:2017 - Sensitive Data Exposure"
+      cwe: "CWE-328: Weak Hash"
+
+  # DOM-based XSS detection patterns (for detection, not exploitation)
+  - id: dom-xss-detection
+    pattern: $ELEMENT.innerHTML = $USER_INPUT
+    message: "DOM-based XSS risk - sanitize input before inserting HTML"
+    languages: [javascript, typescript]
+    severity: ERROR
+    metadata:
+      owasp: "A7:2017 - XSS"
+      cwe: "CWE-79: Cross-site Scripting"

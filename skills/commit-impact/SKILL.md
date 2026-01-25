@@ -30,9 +30,17 @@ This skill analyzes code changes to predict:
 
 ## Implementation
 
-Use the `mcp__argus__argus_analyze` MCP tool with the commit SHA or branch name.
+Use the following Argus MCP tools:
 
-The tool returns:
+1. **`argus_what_to_test`** - Analyzes git diff to identify which tests are affected
+   - Input: `{ "diff": "<git diff output>", "files": ["file1.py", "file2.js"] }`
+   - Returns: List of tests to run with priority and reasoning
+
+2. **`argus_risk_scores`** - Calculates risk score for the changes
+   - Input: `{ "commit": "<commit SHA or branch>" }`
+   - Returns: Risk assessment with scores and deployment recommendation
+
+The tools return:
 - Predicted test failures with confidence scores
 - Security vulnerabilities found
 - Risk assessment (low/medium/high)

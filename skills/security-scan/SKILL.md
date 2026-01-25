@@ -29,7 +29,23 @@ This skill scans code for security vulnerabilities including:
 
 ## Implementation
 
-Use the `mcp__argus__argus_security` MCP tool.
+### Local Scanning (Semgrep)
+
+Run Semgrep locally for immediate security feedback:
+
+```bash
+# Install if needed
+pip install semgrep
+
+# Run security scan on changed files
+semgrep --config=auto --json <files>
+```
+
+### Argus Integration
+
+Use the **`argus_risk_scores`** MCP tool to get AI-powered security analysis:
+- Input: `{ "commit": "<commit SHA>", "include_security": true }`
+- Returns: Security findings with severity, OWASP category, and remediation steps
 
 ## Output Format
 

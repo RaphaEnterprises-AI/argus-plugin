@@ -22,6 +22,12 @@ This skill suggests which tests to run based on code changes.
 4. Prioritize by impact score
 5. Suggest minimal test set
 
+## Implementation
+
+Use the **`argus_what_to_test`** MCP tool:
+- Input: `{ "diff": "<git diff>", "project_id": "<project>" }`
+- Returns: Prioritized list of tests with reasoning and estimated run time
+
 ## Output Format
 
 ### Suggested Tests

@@ -1,6 +1,6 @@
 {
   "name": "argus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Full Stack Quality Intelligence - Autonomous testing, commit analysis, and self-healing tests",
   "author": {
     "name": "Raphatech",
@@ -19,5 +19,29 @@
     "self-healing",
     "quality-intelligence",
     "autonomous-testing"
-  ]
+  ],
+  "commands": {
+    "test": "commands/test.md",
+    "discover": "commands/discover.md",
+    "analyze": "commands/analyze.md",
+    "review": "commands/review.md",
+    "heal": "commands/heal.md",
+    "report": "commands/report.md",
+    "status": "commands/status.md"
+  },
+  "agents": {
+    "e2e-tester": "agents/e2e-tester.md",
+    "api-tester": "agents/api-tester.md",
+    "security-scanner": "agents/security-scanner.md",
+    "performance-analyzer": "agents/performance-analyzer.md",
+    "self-healer": "agents/self-healer.md"
+  },
+  "skills": {
+    "commit-impact": "skills/commit-impact/SKILL.md",
+    "security-scan": "skills/security-scan/SKILL.md",
+    "test-suggestions": "skills/test-suggestions/SKILL.md",
+    "flaky-detection": "skills/flaky-detection/SKILL.md"
+  },
+  "hooks": "hooks/hooks.json",
+  "mcp": ".mcp.json"
 }

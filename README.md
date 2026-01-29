@@ -26,24 +26,37 @@ claude --plugin-dir ./argus-plugin
 
 ## Configuration
 
-Set your Argus API credentials:
+Set your Argus API credentials. The `ARGUS_API_KEY` is required for MCP server authentication:
 
 ```bash
-export ARGUS_API_URL="https://api.heyargus.ai"
+# Required - Your Argus API key for authentication
 export ARGUS_API_KEY="your-api-key"
+
+# Optional - Defaults to production API
+export ARGUS_API_URL="https://api.heyargus.ai"
 ```
+
+You can get your API key from the [Argus Dashboard](https://app.heyargus.ai/settings/api-keys).
+
+### Claude Code Configuration
+
+The plugin automatically connects to the Argus MCP server. If you need to verify the connection:
+
+1. Run `/argus status` to check connectivity
+2. Ensure your `ARGUS_API_KEY` environment variable is set
+3. Check that the plugin is installed: `claude plugin list`
 
 ## Commands
 
 | Command | Description |
 |---------|-------------|
-| `/argus:test [url]` | Run E2E tests on a URL |
-| `/argus:discover [url]` | Discover page elements |
-| `/argus:analyze [commit]` | Analyze commit impact |
-| `/argus:review [PR#]` | Review a pull request |
-| `/argus:heal [test-id]` | Self-heal broken tests |
-| `/argus:report` | Generate test report |
-| `/argus:status` | Check Argus connection |
+| `/argus test [url]` | Run E2E tests on a URL |
+| `/argus discover <url>` | Discover page elements |
+| `/argus analyze [commit]` | Analyze commit impact |
+| `/argus review <PR#>` | Review a pull request |
+| `/argus heal [test-id]` | Self-heal broken tests |
+| `/argus report` | Generate test report |
+| `/argus status` | Check Argus connection |
 
 ## Skills (Auto-Triggered)
 
@@ -68,17 +81,22 @@ Specialized agents for complex tasks:
 
 ### Run Tests
 ```
-/argus:test https://demo.vercel.store
+/argus test https://demo.vercel.store
 ```
 
 ### Analyze Commit Impact
 ```
-/argus:analyze HEAD~3
+/argus analyze HEAD~3
 ```
 
 ### Discover Elements
 ```
-/argus:discover https://example.com
+/argus discover https://example.com
+```
+
+### Review a Pull Request
+```
+/argus review 123
 ```
 
 ## Architecture

@@ -1,5 +1,16 @@
 ---
 description: Self-heal a broken test by finding new selectors
+args:
+  - name: test_id
+    description: The test ID to heal (optional - heals all failing tests if not provided)
+    required: false
+    type: string
+allowed_tools:
+  - mcp__argus__argus_healing_review
+  - mcp__argus__argus_healing_patterns
+  - mcp__argus__argus_healing_stats
+  - mcp__argus__argus_healing_config
+  - mcp__argus__argus_tests
 ---
 
 # Argus Self-Healing
@@ -8,8 +19,8 @@ Automatically fix broken tests by finding alternative selectors or updating asse
 
 ## Usage
 
-- `/argus:heal [test-id]` - Heal a specific test
-- `/argus:heal` - Heal all failing tests in current project
+- `/argus heal [test-id]` - Heal a specific test
+- `/argus heal` - Heal all failing tests in current project
 
 ## What This Does
 
@@ -19,9 +30,12 @@ Automatically fix broken tests by finding alternative selectors or updating asse
 4. Updates the test definition
 5. Re-runs to verify the fix
 
-## Arguments
+## Instructions
 
-$ARGUMENTS
+1. If no test_id provided, use `argus_tests` to find failing tests
+2. Use `argus_healing_patterns` to find similar past fixes
+3. Use `argus_healing_review` to apply the healing fix
+4. Report the results with before/after selectors
 
 ## Self-Healing Capabilities
 
@@ -33,8 +47,6 @@ $ARGUMENTS
 ## Example
 
 ```
-/argus:heal test_login_flow
-/argus:heal
+/argus heal test_login_flow
+/argus heal
 ```
-
-Use the `argus_healing_review` and `argus_healing_patterns` MCP tools to perform self-healing.

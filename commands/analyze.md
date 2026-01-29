@@ -1,5 +1,15 @@
 ---
 description: Analyze commit impact - predict which tests might fail
+args:
+  - name: target
+    description: Commit SHA, branch name, or empty for uncommitted changes
+    required: false
+    type: string
+allowed_tools:
+  - mcp__argus__argus_what_to_test
+  - mcp__argus__argus_risk_scores
+  - mcp__argus__argus_cicd_test_impact
+  - Bash
 ---
 
 # Argus Commit Impact Analysis
@@ -8,9 +18,9 @@ Analyze code changes to predict which tests might fail and identify potential ri
 
 ## Usage
 
-- `/argus:analyze` - Analyze current uncommitted changes
-- `/argus:analyze [commit]` - Analyze a specific commit
-- `/argus:analyze [branch]` - Analyze changes in a branch
+- `/argus analyze` - Analyze current uncommitted changes
+- `/argus analyze [commit]` - Analyze a specific commit
+- `/argus analyze [branch]` - Analyze changes in a branch
 
 ## What This Does
 
@@ -20,13 +30,18 @@ Analyze code changes to predict which tests might fail and identify potential ri
 4. Matches against historical failure patterns
 5. Calculates risk score and predictions
 
-## Arguments
+## Instructions
 
-$ARGUMENTS
+1. If a target is provided, use it. Otherwise, analyze uncommitted changes.
+2. Run the extract-diff script to get the git diff:
+   ```bash
+   ${CLAUDE_PLUGIN_ROOT}/skills/commit-impact/scripts/extract-diff.sh [target]
+   ```
+3. Use `argus_what_to_test` MCP tool to get test recommendations
+4. Use `argus_risk_scores` MCP tool to get risk assessment
+5. Present results as formatted tables
 
-Accepts: commit SHA, branch name, or nothing (for current changes)
-
-## Output
+## Output Format
 
 ### Test Predictions
 | Test | Failure Risk | Reason |
@@ -41,8 +56,6 @@ Accepts: commit SHA, branch name, or nothing (for current changes)
 ## Example
 
 ```
-/argus:analyze HEAD~3
-/argus:analyze feature/new-auth
+/argus analyze HEAD~3
+/argus analyze feature/new-auth
 ```
-
-Use the `argus_what_to_test` and `argus_risk_scores` MCP tools to perform impact analysis.
